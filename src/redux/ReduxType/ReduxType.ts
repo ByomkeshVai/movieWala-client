@@ -9,3 +9,18 @@ export interface TApiResponse {
     updatedAt: string;
   };
 }
+
+interface TCategory {
+  _id: string;
+  category: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface TApiRequest {
+  statusCode: number;
+  success: boolean;
+  message: string;
+  data: {
+    categories: TCategory[];
+  };
+}
