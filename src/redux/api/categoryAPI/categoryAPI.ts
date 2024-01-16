@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { TApiResponse } from "../../ReduxType/ReduxType";
 
 export const categoryAPI = createApi({
   reducerPath: "categoryAPI",
@@ -21,6 +22,9 @@ export const categoryAPI = createApi({
           method: "POST",
           body: data,
         };
+      },
+      transformResponse: (response: TApiResponse) => {
+        return response;
       },
       invalidatesTags: ["category"],
     }),
