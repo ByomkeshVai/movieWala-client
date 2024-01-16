@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAddCategoryMutation } from "../../redux/api/categoryAPI/categoryAPI";
 import { Alert } from "antd";
+import { useEffect, useState } from "react";
 
 const AddCategoryForm = () => {
   const {
@@ -17,14 +18,35 @@ const AddCategoryForm = () => {
     addCategory(data);
   };
 
+  const [successAlertVisible, setSuccessAlertVisible] = useState(false);
+  const [errorAlertVisible, setErrorAlertVisible] = useState(false);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setSuccessAlertVisible(true);
+      const successTimeout = setTimeout(() => {
+        setSuccessAlertVisible(false);
+      }, 5000);
+
+      return () => clearTimeout(successTimeout);
+    } else if (isError) {
+      setErrorAlertVisible(true);
+      const errorTimeout = setTimeout(() => {
+        setErrorAlertVisible(false);
+      }, 5000);
+
+      return () => clearTimeout(errorTimeout);
+    }
+  }, [isSuccess, isError]);
+
   return (
     <>
-      {isSuccess ? (
-        <Alert description={data.message} type="success" showIcon />
-      ) : (
-        ""
+      {successAlertVisible && (
+        <Alert description={data?.message} type="success" closable />
       )}
-      {isError ? <Alert description="Something Went Wrong" type="error" /> : ""}
+      {errorAlertVisible && (
+        <Alert description="Something Went Wrong" type="error" closable />
+      )}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className=" flex flex-col mx-auto gap-2"
