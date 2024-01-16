@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useAddCategoryMutation } from "../../redux/api/categoryAPI/categoryAPI";
 
 const AddCategoryForm = () => {
   const {
@@ -7,8 +8,12 @@ const AddCategoryForm = () => {
     handleSubmit,
   } = useForm();
 
+  const [addCategory, { isLoading, isSuccess }] = useAddCategoryMutation();
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    addCategory(data);
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
