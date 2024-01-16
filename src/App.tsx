@@ -1,7 +1,9 @@
+import BackendLayout from "./components/layout/Backend/BackendLayout";
+
 function App() {
   return (
     <>
-      <h2>this is app</h2>
+      <BackendLayout />
     </>
   );
 }
