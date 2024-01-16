@@ -1,10 +1,8 @@
 import { ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import { NavLink } from "react-router-dom";
-import AddCategory from "../pages/admin/Category/AddCategory";
 import AddLanguage from "../pages/admin/Language/AddLanguage";
-import AllLanguage from "../pages/admin/Language/AllLanguage";
-import AllCategory from "../pages/admin/Category/AllCategory";
+import Category from "../pages/admin/Category/Category";
 
 type TRoute = {
   path: string;
@@ -25,19 +23,10 @@ const adminPaths = [
   },
   {
     name: "Category",
-    children: [
-      {
-        name: "Add Category",
-        path: "add-category",
-        element: <AddCategory />,
-      },
-      {
-        name: "All Category",
-        path: "all-category",
-        element: <AllCategory />,
-      },
-    ],
+    path: "category",
+    element: <Category />,
   },
+
   {
     name: "Language",
     children: [
@@ -45,11 +34,6 @@ const adminPaths = [
         name: "Add Language",
         path: "add-language",
         element: <AddLanguage />,
-      },
-      {
-        name: "All Language",
-        path: "all-language",
-        element: <AllLanguage />,
       },
     ],
   },
