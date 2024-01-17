@@ -14,7 +14,12 @@ const CategoryTable = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null
+  ); // State to track selected category ID
+
   const handleEditClick = (itemId: string) => {
+    setSelectedCategoryId(itemId); // Set the selected category ID
     setIsModalOpen(true);
     console.log("Edit clicked for item with ID:", itemId);
   };
@@ -93,6 +98,7 @@ const CategoryTable = () => {
       <CategoryUpdateModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        selectedCategoryId={selectedCategoryId}
       />
     </div>
   );

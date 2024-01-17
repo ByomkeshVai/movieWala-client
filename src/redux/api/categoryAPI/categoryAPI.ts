@@ -7,11 +7,16 @@ export const categoryAPI = createApi({
   tagTypes: ["category"],
   endpoints: (builder) => ({
     getCategory: builder.query({
-      query: () => {
-        return {
-          url: "/categories",
-          method: "GET",
-        };
+      query: (categoryID = "") => {
+        return categoryID
+          ? {
+              url: `/categories/${categoryID}`,
+              method: "GET",
+            }
+          : {
+              url: "/categories",
+              method: "GET",
+            };
       },
       transformResponse: (response: TApiRequest) => {
         return response?.data?.categories;

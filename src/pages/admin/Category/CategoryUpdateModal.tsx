@@ -1,15 +1,21 @@
 import React from "react";
 import { Button, Modal } from "antd";
+import { useGetCategoryQuery } from "../../../redux/api/categoryAPI/categoryAPI";
+import UpdateCategoryForm from "../../../components/form/UpdateCategoryForm";
 
 interface ModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
+  selectedCategoryId: string | null;
 }
 
 const CategoryUpdateModal: React.FC<ModalProps> = ({
   isModalOpen,
   setIsModalOpen,
+  selectedCategoryId,
 }) => {
+  const { data: data } = useGetCategoryQuery(selectedCategoryId);
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -22,6 +28,8 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
     setIsModalOpen(false);
   };
 
+  const singleCategory = Array.isArray(data) ? data[0] : data;
+
   return (
     <>
       <Button type="primary" onClick={showModal}>
@@ -33,9 +41,7 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <UpdateCategoryForm categoryItem={singleCategory?.category} />
       </Modal>
     </>
   );
