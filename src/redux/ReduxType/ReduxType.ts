@@ -2,13 +2,14 @@ export interface TApiResponse {
   statusCode: number;
   success: boolean;
   message: string;
-  data: TCategory[]; // Change to an array of categories
+  data: TCategory[];
 }
 
 interface TCategory {
   _id: string;
   category?: string;
   genre?: string;
+  language?: string;
   isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
@@ -19,6 +20,7 @@ export interface TApiRequest {
   success: boolean;
   message: string;
   data: {
+    languages?: TCategory[];
     genres?: TCategory[];
     categories?: TCategory[];
   };

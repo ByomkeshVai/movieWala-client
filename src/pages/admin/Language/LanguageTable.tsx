@@ -2,22 +2,24 @@ import { Table } from "antd";
 import Button from "../../../libs/Button";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import GenreUpdateModal from "./GenreUpdateModal";
+import LanguageUpdateModal from "./LanguageUpdateModal";
 import {
-  useDeleteGenreMutation,
-  useGetGenreQuery,
-} from "../../../redux/api/GenreAPI/genreAPI";
+  useDeleteLanguageMutation,
+  useGetLanguageQuery,
+} from "../../../redux/api/languageAPI/languageAPI";
 
-const GenreTable = () => {
-  const { data, isLoading } = useGetGenreQuery(undefined);
-  const [deleteGenre] = useDeleteGenreMutation();
+const LanguageTable = () => {
+  const { data, isLoading } = useGetLanguageQuery(undefined);
+  const [deleteLanguage] = useDeleteLanguageMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [selectedGenreId, setSelectedGenreId] = useState<string | null>(null);
+  const [selectedLanguageId, setSelectedLanguageId] = useState<string | null>(
+    null
+  );
 
   const handleEditClick = (itemId: string) => {
-    setSelectedGenreId(itemId);
+    setSelectedLanguageId(itemId);
     setIsModalOpen(true);
   };
 
@@ -32,10 +34,10 @@ const GenreTable = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteGenre(itemId);
+        deleteLanguage(itemId);
         Swal.fire({
           title: "Deleted!",
-          text: "Genre is deleted.",
+          text: "Language is deleted.",
           icon: "success",
         });
       }
@@ -44,7 +46,7 @@ const GenreTable = () => {
 
   const dataSource = data?.map((item, index) => ({
     key: (index + 1).toString(),
-    genre: item.genre,
+    language: item.language,
     date: item.createdAt.split("T")[0],
     action: (
       <div className="flex gap-2  items-center">
@@ -69,9 +71,9 @@ const GenreTable = () => {
       key: "key",
     },
     {
-      title: "Genre",
-      dataIndex: "genre",
-      key: "genre",
+      title: "Language",
+      dataIndex: "language",
+      key: "language",
     },
     {
       title: "Date",
@@ -92,13 +94,13 @@ const GenreTable = () => {
       ) : (
         <Table dataSource={dataSource} columns={columns} />
       )}
-      <GenreUpdateModal
+      <LanguageUpdateModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        selectedGenreId={selectedGenreId}
+        selectedLanguageId={selectedLanguageId}
       />
     </div>
   );
 };
 
-export default GenreTable;
+export default LanguageTable;

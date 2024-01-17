@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import AddLanguage from "../pages/admin/Language/AddLanguage";
 import Category from "../pages/admin/Category/Category";
 import Genre from "../pages/admin/Genre/Genre";
+import Language from "../pages/admin/Language/Language";
 
 type TRoute = {
   path: string;
@@ -22,23 +23,24 @@ const adminPaths = [
     path: "dashboard",
     element: <AdminDashboard />,
   },
+
   {
-    name: "Category",
-    path: "category",
-    element: <Category />,
-  },
-  {
-    name: "Genre",
-    path: "genre",
-    element: <Genre />,
-  },
-  {
-    name: "Language",
+    name: "Movie Management",
     children: [
       {
-        name: "Add Language",
-        path: "add-language",
-        element: <AddLanguage />,
+        name: "Language",
+        path: "language",
+        element: <Language />,
+      },
+      {
+        name: "Category",
+        path: "category",
+        element: <Category />,
+      },
+      {
+        name: "Genre",
+        path: "genre",
+        element: <Genre />,
       },
     ],
   },

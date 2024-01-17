@@ -39,6 +39,7 @@ const UpdateCategoryForm: React.FC<TUpdateProps> = ({
         Category Name
       </label>
       <input
+        placeholder="ex: Movie, Web-Series, Cartoon"
         {...register("category")}
         defaultValue={categoryItem}
         className="py-2 pr-5 p-2 rounded-xl shadow-md m-3 border-2 border-gray-400"

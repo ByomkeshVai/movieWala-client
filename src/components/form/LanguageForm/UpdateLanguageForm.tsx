@@ -1,29 +1,29 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useUpdateGenreMutation } from "../../../redux/api/GenreAPI/genreAPI";
+import { useUpdateLanguageMutation } from "../../../redux/api/languageAPI/languageAPI";
 
 interface TFormInput {
-  genre: string;
+  language: string;
 }
 
 interface TUpdateProps {
-  genreID: string | undefined;
-  genreItem: string | undefined;
+  languageID: string | undefined;
+  languageItem: string | undefined;
   setIsModalOpen: (valueType: boolean) => void;
 }
 
-const UpdateGenreForm: React.FC<TUpdateProps> = ({
-  genreID,
-  genreItem,
+const UpdateLanguageForm: React.FC<TUpdateProps> = ({
+  languageID,
+  languageItem,
   setIsModalOpen,
 }) => {
-  const [updateCategory] = useUpdateGenreMutation();
+  const [updateCategory] = useUpdateLanguageMutation();
 
   const { register, handleSubmit } = useForm<TFormInput>();
   const onSubmit: SubmitHandler<TFormInput> = (data) => {
     updateCategory({
-      genreID: genreID,
-      body: { genre: data.genre },
+      languageID: languageID,
+      body: { language: data.language },
     });
 
     setIsModalOpen(false);
@@ -34,13 +34,13 @@ const UpdateGenreForm: React.FC<TUpdateProps> = ({
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center"
     >
-      <label htmlFor="genre" className="font-bold ">
-        Genre Name
+      <label htmlFor="language" className="font-bold ">
+        Language Name
       </label>
       <input
-        placeholder="ex: Action, Drama, Thriller"
-        {...register("genre")}
-        defaultValue={genreItem}
+        placeholder="ex: Bangla, Hindi, Tamil"
+        {...register("language")}
+        defaultValue={languageItem}
         className="py-2 pr-5 p-2 rounded-xl shadow-md m-3 border-2 border-gray-400"
       />
       <div className="flex gap-4 ">
@@ -61,4 +61,4 @@ const UpdateGenreForm: React.FC<TUpdateProps> = ({
   );
 };
 
-export default UpdateGenreForm;
+export default UpdateLanguageForm;

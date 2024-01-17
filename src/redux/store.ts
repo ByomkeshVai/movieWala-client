@@ -1,14 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { categoryAPI } from "./api/categoryAPI/categoryAPI";
 import { genreAPI } from "./api/GenreAPI/genreAPI";
+import { languageAPI } from "./api/languageAPI/languageAPI";
 
 export const store = configureStore({
   reducer: {
     [categoryAPI.reducerPath]: categoryAPI.reducer,
     [genreAPI.reducerPath]: genreAPI.reducer,
+    [languageAPI.reducerPath]: languageAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(categoryAPI.middleware, genreAPI.middleware),
+    getDefaultMiddleware().concat(
+      categoryAPI.middleware,
+      genreAPI.middleware,
+      languageAPI.middleware
+    ),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
