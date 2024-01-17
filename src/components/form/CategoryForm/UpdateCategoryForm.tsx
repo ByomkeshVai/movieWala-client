@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useUpdateCategoryMutation } from "../../redux/api/categoryAPI/categoryAPI";
+import { useUpdateCategoryMutation } from "../../../redux/api/categoryAPI/categoryAPI";
 
 interface TFormInput {
   category: string;

@@ -7,7 +7,8 @@ export interface TApiResponse {
 
 interface TCategory {
   _id: string;
-  category: string;
+  category?: string;
+  genre?: string;
   isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
@@ -18,6 +19,7 @@ export interface TApiRequest {
   success: boolean;
   message: string;
   data: {
-    categories: TCategory[];
+    genres?: TCategory[];
+    categories?: TCategory[];
   };
 }

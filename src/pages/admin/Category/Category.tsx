@@ -1,4 +1,4 @@
-import AddCategoryForm from "../../../components/form/AddCategoryForm";
+import AddCategoryForm from "../../../components/form/CategoryForm/AddCategoryForm";
 import CategoryTable from "./CategoryTable";
 
 export type TOnSubmit = [category: string];

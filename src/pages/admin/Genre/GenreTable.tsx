@@ -1,25 +1,23 @@
 import { Table } from "antd";
-import {
-  useDeleteCategoryMutation,
-  useGetCategoryQuery,
-} from "../../../redux/api/categoryAPI/categoryAPI";
 import Button from "../../../libs/Button";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import CategoryUpdateModal from "./CategoryUpdateModal";
+import GenreUpdateModal from "./GenreUpdateModal";
+import {
+  useDeleteGenreMutation,
+  useGetGenreQuery,
+} from "../../../redux/api/GenreAPI/genreAPI";
 
-const CategoryTable = () => {
-  const { data, isLoading } = useGetCategoryQuery(undefined);
-  const [deleteCategory] = useDeleteCategoryMutation();
+const GenreTable = () => {
+  const { data, isLoading } = useGetGenreQuery(undefined);
+  const [deleteGenre] = useDeleteGenreMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
-    null
-  );
+  const [selectedGenreId, setSelectedGenreId] = useState<string | null>(null);
 
   const handleEditClick = (itemId: string) => {
-    setSelectedCategoryId(itemId);
+    setSelectedGenreId(itemId);
     setIsModalOpen(true);
   };
 
@@ -34,7 +32,7 @@ const CategoryTable = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteCategory(itemId);
+        deleteGenre(itemId);
         Swal.fire({
           title: "Deleted!",
           text: "Category is deleted.",
@@ -46,7 +44,7 @@ const CategoryTable = () => {
 
   const dataSource = data?.map((item, index) => ({
     key: (index + 1).toString(),
-    category: item.category,
+    genre: item.genre,
     date: item.createdAt.split("T")[0],
     action: (
       <div className="flex gap-2  items-center">
@@ -71,9 +69,9 @@ const CategoryTable = () => {
       key: "key",
     },
     {
-      title: "Category",
-      dataIndex: "category",
-      key: "category",
+      title: "Genre",
+      dataIndex: "genre",
+      key: "genre",
     },
     {
       title: "Date",
@@ -94,13 +92,13 @@ const CategoryTable = () => {
       ) : (
         <Table dataSource={dataSource} columns={columns} />
       )}
-      <CategoryUpdateModal
+      <GenreUpdateModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        selectedCategoryId={selectedCategoryId}
+        selectedGenreId={selectedGenreId}
       />
     </div>
   );
 };
 
-export default CategoryTable;
+export default GenreTable;

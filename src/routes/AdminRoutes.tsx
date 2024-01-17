@@ -3,6 +3,7 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import { NavLink } from "react-router-dom";
 import AddLanguage from "../pages/admin/Language/AddLanguage";
 import Category from "../pages/admin/Category/Category";
+import Genre from "../pages/admin/Genre/Genre";
 
 type TRoute = {
   path: string;
@@ -26,7 +27,11 @@ const adminPaths = [
     path: "category",
     element: <Category />,
   },
-
+  {
+    name: "Genre",
+    path: "genre",
+    element: <Genre />,
+  },
   {
     name: "Language",
     children: [

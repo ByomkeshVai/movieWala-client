@@ -1,20 +1,20 @@
 import React from "react";
 import { Button, Modal } from "antd";
-import { useGetCategoryQuery } from "../../../redux/api/categoryAPI/categoryAPI";
-import UpdateCategoryForm from "../../../components/form/CategoryForm/UpdateCategoryForm";
+import UpdateGenreForm from "../../../components/form/GenreForm/UpdateGenreForm";
+import { useGetGenreQuery } from "../../../redux/api/GenreAPI/genreAPI";
 
 interface ModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  selectedCategoryId: string | null;
+  selectedGenreId: string | null;
 }
 
-const CategoryUpdateModal: React.FC<ModalProps> = ({
+const GenreUpdateModal: React.FC<ModalProps> = ({
   isModalOpen,
   setIsModalOpen,
-  selectedCategoryId,
+  selectedGenreId,
 }) => {
-  const { data: data } = useGetCategoryQuery(selectedCategoryId);
+  const { data: data } = useGetGenreQuery(selectedGenreId);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -24,7 +24,7 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
     setIsModalOpen(false);
   };
 
-  const singleCategory = Array.isArray(data) ? data[0] : data;
+  const singleGenre = Array.isArray(data) ? data[0] : data;
 
   return (
     <>
@@ -33,13 +33,13 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
       </Button>
       <Modal
         footer={null}
-        title="Update Category Name"
+        title="Update Genre Name"
         open={isModalOpen}
         onCancel={handleCancel}
       >
-        <UpdateCategoryForm
-          categoryID={singleCategory?._id}
-          categoryItem={singleCategory?.category}
+        <UpdateGenreForm
+          genreID={singleGenre?._id}
+          genreItem={singleGenre?.genre}
           setIsModalOpen={setIsModalOpen}
         />
       </Modal>
@@ -47,4 +47,4 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
   );
 };
 
-export default CategoryUpdateModal;
+export default GenreUpdateModal;

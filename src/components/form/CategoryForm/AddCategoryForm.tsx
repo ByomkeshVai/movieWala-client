@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAddCategoryMutation } from "../../redux/api/categoryAPI/categoryAPI";
+import { useAddCategoryMutation } from "../../../redux/api/categoryAPI/categoryAPI";
 import { Alert } from "antd";
 import { useEffect, useState } from "react";
 
