@@ -1,18 +1,43 @@
 import { Table } from "antd";
-import { useGetCategoryQuery } from "../../../redux/api/categoryAPI/categoryAPI";
+import {
+  useDeleteCategoryMutation,
+  useGetCategoryQuery,
+} from "../../../redux/api/categoryAPI/categoryAPI";
 import Button from "../../../libs/Button";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import CategoryUpdateModal from "./CategoryUpdateModal";
 
 const CategoryTable = () => {
   const { data, isLoading } = useGetCategoryQuery(undefined);
+  const [deleteCategory] = useDeleteCategoryMutation();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleEditClick = (itemId: string) => {
-    // Handle edit action
+    setIsModalOpen(true);
     console.log("Edit clicked for item with ID:", itemId);
   };
 
   const handleDeleteClick = (itemId: string) => {
-    // Handle delete action
-    console.log("Delete clicked for item with ID:", itemId);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCategory(itemId);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Category is deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
 
   const dataSource = data?.map((item, index) => ({
@@ -65,6 +90,10 @@ const CategoryTable = () => {
       ) : (
         <Table dataSource={dataSource} columns={columns} />
       )}
+      <CategoryUpdateModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </div>
   );
 };
