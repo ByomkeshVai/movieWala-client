@@ -20,10 +20,6 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -36,12 +32,16 @@ const CategoryUpdateModal: React.FC<ModalProps> = ({
         Open Modal
       </Button>
       <Modal
-        title="Basic Modal"
+        footer={null}
+        title="Update Category Name"
         open={isModalOpen}
-        onOk={handleOk}
         onCancel={handleCancel}
       >
-        <UpdateCategoryForm categoryItem={singleCategory?.category} />
+        <UpdateCategoryForm
+          categoryID={singleCategory?._id}
+          categoryItem={singleCategory?.category}
+          setIsModalOpen={setIsModalOpen}
+        />
       </Modal>
     </>
   );

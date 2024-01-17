@@ -36,6 +36,20 @@ export const categoryAPI = createApi({
       },
       invalidatesTags: ["category"],
     }),
+    UpdateCategory: builder.mutation({
+      query: ({ categoryID, body }) => {
+        console.log(categoryID, body);
+        return {
+          url: `/categories/${categoryID}`,
+          method: "PUT",
+          body: body,
+        };
+      },
+      transformResponse: (response: TApiResponse) => {
+        return response;
+      },
+      invalidatesTags: ["category"],
+    }),
 
     DeleteCategory: builder.mutation({
       query: (id) => {
@@ -56,4 +70,5 @@ export const {
   useGetCategoryQuery,
   useAddCategoryMutation,
   useDeleteCategoryMutation,
+  useUpdateCategoryMutation,
 } = categoryAPI;
