@@ -17,11 +17,11 @@ interface IFormInput {
   genres: string[];
   languages: string[];
   tags: string[];
-  movieLink: string;
+  links: string[];
   trailerLink: string;
 }
 
-const AddMovie = () => {
+const AddWebSeries = () => {
   const {
     register,
     formState: { errors },
@@ -42,6 +42,7 @@ const AddMovie = () => {
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
+  const [links, setLinks] = useState<string[]>([]);
 
   const addGenre = (genre: string) => {
     setSelectedGenres((prevGenres) => [...prevGenres, genre]);
@@ -67,6 +68,14 @@ const AddMovie = () => {
 
   const removeTag = (index: number) => {
     setTags((prevTags) => prevTags.filter((_, i) => i !== index));
+  };
+
+  const addLink = (link: string) => {
+    setLinks((prevLinks) => [...prevLinks, link]);
+  };
+
+  const removeLink = (index: number) => {
+    setLinks((prevLinks) => prevLinks.filter((_, i) => i !== index));
   };
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
@@ -303,41 +312,76 @@ const AddMovie = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col">
-              <label htmlFor="movieLink" className="font-bold text-md mb-2">
-                Movie Link
-              </label>
-              <input
-                className="px-3 py-2 font-lg rounded-lg shadow-xl"
-                placeholder="Add Movie Trailer Link"
-                {...register("movieLink", { required: true })}
-                aria-invalid={errors.movieLink ? "true" : "false"}
-              />
-              {errors.movieLink?.type === "required" && (
-                <p role="alert">movieLink is required</p>
-              )}
+          <div className="mb-4">
+            <label htmlFor="links" className="text-md font-semibold">
+              Parts Links
+            </label>
+            <div className="flex  flex-col flex-1 mt-2">
+              {links.map((link, index) => (
+                <div
+                  key={index}
+                  className="bg-red-500 text-white rounded-full px-3 py-1 m-1 flex items-center"
+                >
+                  <p className="mr-3 font-bold">Part {index + 1} :</p>
+                  <span className="mr-2">{link}</span>
+                  <button
+                    type="button"
+                    className="text-white"
+                    onClick={() => removeLink(index)}
+                  >
+                    {/* Cross Icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      className="h-4 w-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="trailerLink" className="font-bold text-md mb-2">
-                Trailer Link
-              </label>
-              <input
-                className="px-3 py-2 font-lg rounded-lg shadow-xl"
-                placeholder="Add Trailer Link"
-                {...register("trailerLink", { required: true })}
-                aria-invalid={errors.trailerLink ? "true" : "false"}
-              />
-              {errors.trailerLink?.type === "required" && (
-                <p role="alert">trailerLink is required</p>
-              )}
-            </div>
+            <input
+              type="text"
+              {...register("links")}
+              placeholder="Add Links (press Enter to add a part Link)"
+              className="mt-2 p-2 border rounded-lg w-full shadow-lg"
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  addLink(e.currentTarget.value);
+                  e.currentTarget.value = "";
+                }
+              }}
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="trailerLink" className="font-bold text-md mb-2">
+              Trailer Link
+            </label>
+            <input
+              placeholder="Add Trailer Link"
+              className="px-3 py-2 font-lg rounded-lg shadow-xl"
+              {...register("trailerLink", { required: true })}
+              aria-invalid={errors.trailerLink ? "true" : "false"}
+            />
+            {errors.trailerLink?.type === "required" && (
+              <p role="alert">trailerLink is required</p>
+            )}
           </div>
         </div>
-        <input type="submit" value="Add Movie" />
+        <input type="submit" value="Add Series" />
       </form>
     </div>
   );
 };
 
-export default AddMovie;
+export default AddWebSeries;
