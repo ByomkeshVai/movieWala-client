@@ -5,6 +5,7 @@ import { useGetLanguageQuery } from "../../../redux/api/languageAPI/languageAPI"
 import { useState } from "react";
 import { imageUpload } from "../../../utils/utils";
 import { useAddMovieMutation } from "../../../redux/api/movieAPI/movieAPI";
+import toast from "react-hot-toast";
 
 enum QualityEnum {
   high = "high",
@@ -19,7 +20,7 @@ interface IFormInput {
   genres: string[];
   languages: string[];
   tags: string[];
-  movieLink: string;
+  movieLink: string[];
   trailerLink: string;
   posterImage: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,6 +32,7 @@ const AddMovie = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<IFormInput>();
 
   const { data: categoryData, isLoading: categoryLoading } =
@@ -74,18 +76,43 @@ const AddMovie = () => {
     setTags((prevTags) => prevTags.filter((_, i) => i !== index));
   };
 
-  const [addMovie] = useAddMovieMutation(undefined);
+  const [addMovie, { isSuccess }] = useAddMovieMutation(undefined);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const imageData = await imageUpload(data.image[0]);
-    data.posterImage = imageData.data.display_url;
-    data.genres = selectedGenres;
-    data.languages = selectedLanguages;
+    // Extract IDs from selected values
+    const selectedCategory =
+      categoriesData.find(
+        (categoryObj) => categoryObj.category === data.category
+      )?._id || "";
+
+    const selectedGenreIds = genresData
+      .filter((genreObj) => data.genres.includes(genreObj.genre as string))
+      .map((genreObj) => genreObj._id);
+
+    const selectedLanguageIds = languageDatas
+      .filter((languageObj) =>
+        data?.languages.includes(languageObj.language as string)
+      )
+      .map((languageObj) => languageObj._id);
+
+    // Replace selected values with their respective IDs
+    data.category = selectedCategory || "";
+    data.genres = selectedGenreIds;
+    data.languages = selectedLanguageIds;
     data.tags = tags;
+
+    // Ensure data.movieLink is an array
+    data.movieLink = Array.isArray(data.movieLink)
+      ? data.movieLink
+      : [data.movieLink];
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { image, ...dataWithoutImage } = data;
     addMovie(dataWithoutImage);
+    if (isSuccess) {
+      toast.success("Successfully Movie Created!");
+      reset();
+    }
   };
 
   return (
