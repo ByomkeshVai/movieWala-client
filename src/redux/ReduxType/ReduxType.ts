@@ -23,5 +23,6 @@ export interface TApiRequest {
     languages?: TCategory[];
     genres?: TCategory[];
     categories?: TCategory[];
+    movies?: TCategory[];
   };
 }

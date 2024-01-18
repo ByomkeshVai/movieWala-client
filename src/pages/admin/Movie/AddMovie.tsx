@@ -3,6 +3,8 @@ import { useGetCategoryQuery } from "../../../redux/api/categoryAPI/categoryAPI"
 import { useGetGenreQuery } from "../../../redux/api/GenreAPI/genreAPI";
 import { useGetLanguageQuery } from "../../../redux/api/languageAPI/languageAPI";
 import { useState } from "react";
+import { imageUpload } from "../../../utils/utils";
+import { useAddMovieMutation } from "../../../redux/api/movieAPI/movieAPI";
 
 enum QualityEnum {
   high = "high",
@@ -19,6 +21,9 @@ interface IFormInput {
   tags: string[];
   movieLink: string;
   trailerLink: string;
+  posterImage: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image?: any;
 }
 
 const AddMovie = () => {
@@ -69,12 +74,18 @@ const AddMovie = () => {
     setTags((prevTags) => prevTags.filter((_, i) => i !== index));
   };
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // Update the 'genres', 'languages', and 'tags' fields to be arrays
+  const [addMovie] = useAddMovieMutation(undefined);
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const imageData = await imageUpload(data.image[0]);
+    data.posterImage = imageData.data.display_url;
     data.genres = selectedGenres;
     data.languages = selectedLanguages;
     data.tags = tags;
-    console.log(data);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { image, ...dataWithoutImage } = data;
+    addMovie(dataWithoutImage);
   };
 
   return (
@@ -107,6 +118,7 @@ const AddMovie = () => {
               <p role="alert">Description is required</p>
             )}
           </div>
+
           <div className="flex flex-col">
             <label htmlFor="quality" className="font-bold text-md mb-2">
               Quality
@@ -123,6 +135,22 @@ const AddMovie = () => {
               <p role="alert">quality is required</p>
             )}
           </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="image" className="font-bold text-md mb-2">
+              Image
+            </label>
+            <input
+              className="px-3 py-2 font-lg rounded-lg shadow-xl"
+              type="file"
+              {...register("image", { required: true })}
+              aria-invalid={errors.image ? "true" : "false"}
+            />
+            {errors.image?.type === "required" && (
+              <p role="alert">image is required</p>
+            )}
+          </div>
+
           <div className="flex flex-col">
             <label htmlFor="category" className="font-bold text-md mb-2">
               Category
