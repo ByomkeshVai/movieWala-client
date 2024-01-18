@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import { NavLink } from "react-router-dom";
-import AddLanguage from "../pages/admin/Language/AddLanguage";
 import Category from "../pages/admin/Category/Category";
 import Genre from "../pages/admin/Genre/Genre";
 import Language from "../pages/admin/Language/Language";
+import AddMovie from "../pages/admin/Movie/AddMovie";
 
 type TRoute = {
   path: string;
@@ -22,6 +22,11 @@ const adminPaths = [
     name: "Dashboard",
     path: "dashboard",
     element: <AdminDashboard />,
+  },
+  {
+    name: "Add Movie",
+    path: "add-movie",
+    element: <AddMovie />,
   },
 
   {
