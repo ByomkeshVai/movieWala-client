@@ -7,20 +7,22 @@ type MWSelectProps = {
   name: string;
   mappedData?: any;
   mode?: "multiple" | "tags" | undefined;
+  placeholder?: string;
 };
 
-const MWSelect = ({ mappedData, name, mode }: MWSelectProps) => {
+const MWSelect = ({ mappedData, name, mode, placeholder }: MWSelectProps) => {
   const { formState } = useFormContext();
-  const extract = extractValueWithMap(mappedData, name, name, "_id");
+  const extract = extractValueWithMap(mappedData, name, name);
 
   return (
     <>
       <Controller
         name={name}
+        rules={{ required: `${name} field is required` }}
         render={({ field }) => (
           <>
             <Select
-              placeholder={`Select ${name}`}
+              placeholder={placeholder}
               className="w-full mt-3 text-semibold"
               {...field}
               mode={mode}

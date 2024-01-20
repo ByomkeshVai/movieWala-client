@@ -25,6 +25,7 @@ export const movieAPI = createApi({
     }),
     AddMovie: builder.mutation({
       query: (data) => {
+        console.log(data);
         return {
           url: "/movies/create-movie",
           method: "POST",
