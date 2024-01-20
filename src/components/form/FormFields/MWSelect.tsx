@@ -4,15 +4,14 @@ import extractValueWithMap from "./extractValueWithMap";
 import { Controller, useFormContext } from "react-hook-form";
 
 type MWSelectProps = {
-  defaultValue: string;
   name: string;
-  mappedData: any;
+  mappedData?: any;
   mode?: "multiple" | "tags" | undefined;
 };
 
-const MWSelect = ({ defaultValue, mappedData, name, mode }: MWSelectProps) => {
+const MWSelect = ({ mappedData, name, mode }: MWSelectProps) => {
   const { formState } = useFormContext();
-  const extract = extractValueWithMap(mappedData, name, name);
+  const extract = extractValueWithMap(mappedData, name, name, "_id");
 
   return (
     <>
@@ -21,10 +20,11 @@ const MWSelect = ({ defaultValue, mappedData, name, mode }: MWSelectProps) => {
         render={({ field }) => (
           <>
             <Select
+              placeholder={`Select ${name}`}
               className="w-full mt-3 text-semibold"
               {...field}
               mode={mode}
-              defaultValue={defaultValue}
+              defaultActiveFirstOption={true}
               options={extract}
             />
             {formState.errors[name] && (

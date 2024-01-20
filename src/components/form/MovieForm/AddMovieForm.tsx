@@ -20,23 +20,9 @@ const AddMovieForm = () => {
     <MWForm onSubmit={onSubmit}>
       <MWInput label="Title" type="text" name="title" />
       <MWInput label="description" type="text" name="description" />
-      <MWSelect
-        mappedData={categoryData}
-        defaultValue="Select The Category"
-        name="category"
-      />
-      <MWSelect
-        mappedData={genreData}
-        defaultValue="Select The Genre"
-        name="genre"
-        mode="tags"
-      />
-      <MWSelect
-        mappedData={LanguageData}
-        defaultValue="Select The Language"
-        name="language"
-        mode="tags"
-      />
+      <MWSelect mappedData={categoryData} name="category" />
+      <MWSelect mappedData={genreData} name="genre" mode="tags" />
+      <MWSelect mappedData={LanguageData} name="language" mode="tags" />
       <Button htmlType="submit">Submit</Button>
     </MWForm>
   );
