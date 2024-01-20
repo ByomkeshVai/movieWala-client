@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const extractValueWithMap = (addData: any) => {
+const extractValueWithMap = (
+  addData: any,
+  valueName: string,
+  labelName: string
+) => {
   const result = addData?.map((item: any) => ({
-    value: item.category,
-    label: item.category,
+    value: item[valueName],
+    label: item[labelName],
   }));
   return result;
 };
