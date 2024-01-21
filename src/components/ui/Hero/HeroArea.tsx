@@ -6,19 +6,19 @@ const HeroArea = () => {
   return (
     <>
       <div className="hero-container h-96 ">
-        <div className=" z-0 absolute">
+        <div className=" z-0 absolute ">
           <HeroBackground />
         </div>
-        <div className="flex items-center justify-between px-10  relative z-20 max-w-screen-2xl mx-auto">
-          <div className="text-area mt-10">
-            <h2 className="font-bold text-3xl text-slate-100">
+        <div className="flex lg:items-center lg:justify-between justify-center flex-wrap px-10 lg:py-0  relative z-20 max-w-screen-2xl mx-auto">
+          <div className="text-area lg:mt-10 mt-8 text-center lg:text-left">
+            <h2 className="font-bold lg:text-3xl text-lg text-slate-100 ">
               Download Movies @MovieWala.com
             </h2>
-            <h4 className="text-lg text-slate-100 mt-3">
+            <h4 className="lg:text-lg text-slate-100 mt-3">
               Easiest Movie Downloading Website.
             </h4>
 
-            <div className="flex gap-5 mt-5">
+            <div className="flex gap-5 mt-5 justify-center lg:justify-start">
               <Button className="font-semibold text-slate-100">
                 Click Here
               </Button>

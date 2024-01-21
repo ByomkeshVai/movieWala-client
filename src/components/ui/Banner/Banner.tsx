@@ -7,12 +7,12 @@ type TBannerProps = {
 const Banner = ({ imgLink }: TBannerProps) => {
   return (
     <div className="banner-area py-10 bg-banner-pattern bg-blend-multiply">
-      <div className="flex items-center gap-10 justify-between px-10  relative z-20 max-w-screen-2xl mx-auto ">
+      <div className="flex flex-col lg:flex-row items-center gap-10 justify-between px-10  relative z-20 max-w-screen-2xl mx-auto ">
         <div className="text-area mt-10">
-          <h2 className="font-bold text-3xl text-slate-100">
+          <h2 className="font-bold lg:text-3xl text-slate-100">
             Pirates of the Caribbean: On Stranger Tides
           </h2>
-          <h4 className="text-lg text-slate-100 mt-3">
+          <h4 className="lg:text-lg text-sm text-slate-100 mt-3">
             Contrary to popular belief, Lorem Ipsum is not simply random text.
             It has roots in a piece of classical Latin literature from 45 BC,
             making it over 2000 years old. Richard McClintock, a Latin professor

@@ -5,7 +5,7 @@ import RecentSeries from "./RecentSeries";
 
 const RecentComponent = () => {
   return (
-    <div className="text-slate-50 flex flex-col gap-10 py-10">
+    <div className="text-slate-50 flex flex-col gap-10 py-10 px-10">
       <RecentAnime />
       <RecentSeries />
       <RecentMovie />

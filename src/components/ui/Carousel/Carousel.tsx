@@ -9,7 +9,7 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 
 const Carousel = () => {
   return (
-    <div className="w-[35rem]">
+    <div className="lg:w-[35rem] w-96">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
