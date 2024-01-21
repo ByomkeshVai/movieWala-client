@@ -14,9 +14,9 @@ const Navbar = () => {
   return (
     <nav className="navbar mt-1">
       <Layout className="max-w-screen-2xl mx-auto">
-        <Layout.Header className="nav-header">
+        <Layout.Header className="nav-header flex items-center">
           <div className="logo">
-            <h3 className="brand-font">Brand Here</h3>
+            <h3 className="brand-font font-bold text-xl">MovieWala</h3>
           </div>
           <div className="navbar-menu">
             <div className="leftMenu ">
