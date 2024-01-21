@@ -1,7 +1,6 @@
 /* eslint-disable  */
 
 import { useEffect, useState } from "react";
-import { Controller } from "react-hook-form";
 import type { GetProp, UploadProps } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
