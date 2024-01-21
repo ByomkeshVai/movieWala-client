@@ -1,7 +1,13 @@
+import USlider from "../Slider/USlider";
+import RecentHeaders from "./RecentHeaders";
+
 const RecentMovie = () => {
   return (
-    <div>
-      <h1>This is RecentMovie component</h1>
+    <div className="max-w-screen-2xl mx-auto">
+      <RecentHeaders name="Movie" color="red" />
+      <div>
+        <USlider WSize="w-full" />
+      </div>
     </div>
   );
 };
