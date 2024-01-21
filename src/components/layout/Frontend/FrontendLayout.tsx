@@ -3,7 +3,7 @@ import HeroArea from "../../ui/Hero/HeroArea";
 
 const FrontendLayout = () => {
   return (
-    <div className="">
+    <div className="flex flex-col justify-center">
       <Navbar />
       <HeroArea />
     </div>
