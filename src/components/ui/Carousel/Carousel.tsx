@@ -9,7 +9,7 @@ import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 
 const Carousel = () => {
   return (
-    <div className="">
+    <div className="w-[35rem]">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -19,7 +19,7 @@ const Carousel = () => {
         coverflowEffect={{
           rotate: 0,
           stretch: -30,
-          depth: 500,
+          depth: 300,
           modifier: 2,
           slideShadows: true,
         }}
@@ -38,42 +38,42 @@ const Carousel = () => {
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="h-10">
           <img
             className="object-cover"
             src="https://i.etsystatic.com/20512669/r/il/fd4820/1967828617/il_570xN.1967828617_kv3i.jpg"
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="h-10">
           <img
             className="object-cover"
             src="https://www.vintagemovieposters.co.uk/wp-content/uploads/2023/03/IMG_1887-scaled.jpeg"
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="h-10">
           <img
             className="object-cover"
             src="https://i.pinimg.com/736x/1c/c8/95/1cc895d854e596771bbdeca9f261fd4a.jpg"
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="h-10">
           <img
             className="object-cover"
             src="https://i.ebayimg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="h-10">
           <img
             className="object-cover"
             src="https://i.etsystatic.com/20512669/r/il/fd4820/1967828617/il_570xN.1967828617_kv3i.jpg"
             alt=""
           />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="h-10">
           <img
             className="object-cover"
             src="https://i.ebayi8 h-56mg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"

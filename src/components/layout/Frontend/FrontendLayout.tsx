@@ -1,13 +1,11 @@
-import { Flex, Layout } from "antd";
-import { Content, Footer, Header } from "antd/es/layout/layout";
 import Navbar from "../../ui/Navbar";
-import Carousel from "../../ui/Carousel/Carousel";
+import HeroArea from "../../ui/Hero/HeroArea";
 
 const FrontendLayout = () => {
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <div className="">
       <Navbar />
-      <Carousel />
+      <HeroArea />
     </div>
   );
 };

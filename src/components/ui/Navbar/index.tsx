@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar mt-1">
-      <Layout className="bg-red-600">
+      <Layout className="max-w-screen-2xl mx-auto">
         <Layout.Header className="nav-header">
           <div className="logo">
             <h3 className="brand-font">Brand Here</h3>
