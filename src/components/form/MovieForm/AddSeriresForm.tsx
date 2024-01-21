@@ -1,4 +1,9 @@
-import { Controller, FieldValues, useForm } from "react-hook-form";
+import {
+  Controller,
+  FieldValues,
+  useForm,
+  useFieldArray,
+} from "react-hook-form";
 import MWForm from "../FormFields/MWForm";
 import MWInput from "../FormFields/MWInput";
 import { Button, Select } from "antd";
@@ -11,14 +16,18 @@ import MWUploadForm from "../FormFields/MWUploadForm";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const AddMovieForm = () => {
-  const { reset } = useForm();
+const AddSeriesForm = () => {
+  const { reset, control } = useForm();
   const { data: categoryData } = useGetCategoryQuery(undefined);
   const { data: genreData } = useGetGenreQuery(undefined);
   const { data: LanguageData } = useGetLanguageQuery(undefined);
 
   const [movieImage, setMovieImage] = useState("");
   const [addMovies, { isSuccess, isError }] = useAddMovieMutation();
+  const { fields, append } = useFieldArray({
+    control,
+    name: "movieLink",
+  });
 
   const onSubmit = async (data: FieldValues) => {
     const movies = [data.movieLink];
@@ -97,12 +106,24 @@ const AddMovieForm = () => {
           mode="tags"
           placeholder="Press enter to add tags"
         />
-        <MWInput
-          label="Movie Link"
-          type="text"
-          name="movieLink"
-          placeholder="Add Movie Link"
-        />
+        <>
+          {fields.map((item, index) => (
+            <MWInput
+              key={item.id}
+              label={`Part ${index + 1}`}
+              type="text"
+              name={`movieLink[${index}]`}
+              placeholder={`Add Movie Link (Part ${index + 1})`}
+            />
+          ))}
+          <button
+            type="button"
+            onClick={() => append({})}
+            className="p-1 border-2 bg-[#001529] rounded-lg my-5 fond-semibold text-slate-50"
+          >
+            + Add Series Part
+          </button>
+        </>
         <MWInput
           label="Trailer Link"
           type="text"
@@ -121,4 +142,4 @@ const AddMovieForm = () => {
   );
 };
 
-export default AddMovieForm;
+export default AddSeriesForm;

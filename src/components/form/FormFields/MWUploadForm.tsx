@@ -1,6 +1,6 @@
 /* eslint-disable  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import type { GetProp, UploadProps } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
@@ -10,6 +10,7 @@ import { imageUpload } from "../../../utils/utils";
 type MWUploadProps = {
   setImageUrl: (url: string) => void;
   imageUrl: string;
+  isSuccess: boolean;
 };
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
@@ -26,8 +27,14 @@ const beforeUpload = (file: FileType) => {
   return isJpgOrPng && isLt2M;
 };
 
-const MWUploadForm = ({ imageUrl, setImageUrl }: MWUploadProps) => {
+const MWUploadForm = ({ imageUrl, setImageUrl, isSuccess }: MWUploadProps) => {
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setImageUrl("");
+    }
+  }, [isSuccess, setImageUrl]);
 
   const handleChange: UploadProps["onChange"] = async (info) => {
     const image = info.file.originFileObj;
