@@ -24,7 +24,7 @@ const AddSeriesForm = () => {
 
   const [movieImage, setMovieImage] = useState("");
   const [addMovies, { isSuccess, isError }] = useAddMovieMutation();
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: "movieLink",
   });
@@ -34,10 +34,11 @@ const AddSeriesForm = () => {
 
     const modifiedData = {
       ...data,
-      movieLink: movies,
+      movieLink: movies[0],
       posterImage: movieImage,
     };
 
+    console.log(modifiedData);
     addMovies(modifiedData);
 
     if (isSuccess) {
@@ -108,17 +109,25 @@ const AddSeriesForm = () => {
         />
         <>
           {fields.map((item, index) => (
-            <MWInput
-              key={item.id}
-              label={`Part ${index + 1}`}
-              type="text"
-              name={`movieLink[${index}]`}
-              placeholder={`Add Movie Link (Part ${index + 1})`}
-            />
+            <div key={item.id} className="flex items-center space-x-2">
+              <MWInput
+                label={`Part ${index + 1}`}
+                type="text"
+                name={`movieLink[${index}]`}
+                placeholder={`Add Movie Link (Part ${index + 1})`}
+              />
+              <button
+                type="button"
+                onClick={() => remove(index)}
+                className="p-1 bg-red-500 text-white rounded-lg"
+              >
+                Delete
+              </button>
+            </div>
           ))}
           <button
             type="button"
-            onClick={() => append({})}
+            onClick={() => append({ movieLink: "" })}
             className="p-1 border-2 bg-[#001529] rounded-lg my-5 fond-semibold text-slate-50"
           >
             + Add Series Part
