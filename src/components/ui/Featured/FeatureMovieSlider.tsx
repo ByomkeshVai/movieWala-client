@@ -8,7 +8,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import { useGetmovieQuery } from "../../../redux/api/movieAPI/movieAPI";
 
 const FeatureMovieSlider = () => {
-  const { data } = useGetmovieQuery("featured=true");
+  const { data } = useGetmovieQuery({ featured: "true" });
   return (
     <div className="w-[65rem]">
       <Swiper

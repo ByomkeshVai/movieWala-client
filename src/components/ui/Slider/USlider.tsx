@@ -5,14 +5,16 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
+import { TMovie } from "../../../redux/ReduxType/ReduxType";
 
 type TWize = {
   WSize: string;
+  data: TMovie[];
 };
 
-const USlider = ({ WSize }: TWize) => {
+const USlider = ({ WSize, data }: TWize) => {
   return (
-    <div className={WSize}>
+    <div className={`${WSize}`}>
       <Swiper
         grabCursor={true}
         centeredSlides={false}
@@ -26,69 +28,32 @@ const USlider = ({ WSize }: TWize) => {
         modules={[Pagination, Navigation]}
         className=""
       >
-        <SwiperSlide>
-          <img
-            className="object-cover h-64"
-            src="https://i.ebayimg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://i.etsystatic.com/20512669/r/il/fd4820/1967828617/il_570xN.1967828617_kv3i.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://www.vintagemovieposters.co.uk/wp-content/uploads/2023/03/IMG_1887-scaled.jpeg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://i.pinimg.com/736x/1c/c8/95/1cc895d854e596771bbdeca9f261fd4a.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://i.ebayimg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://www.vintagemovieposters.co.uk/wp-content/uploads/2023/03/IMG_1887-scaled.jpeg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://i.pinimg.com/736x/1c/c8/95/1cc895d854e596771bbdeca9f261fd4a.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://i.ebayimg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover h-64 "
-            src="https://i.etsystatic.com/20512669/r/il/fd4820/1967828617/il_570xN.1967828617_kv3i.jpg"
-            alt=""
-          />
-        </SwiperSlide>
+        {data?.map((movieData: TMovie) => (
+          <SwiperSlide className="">
+            <div className=" group relative">
+              <div className="">
+                <img
+                  className="object-cover h-64 "
+                  src={movieData?.posterImage}
+                  alt={movieData?.title}
+                />
+              </div>
+              <div className="hidden group-hover:block h-full absolute top-0 bg-black w-full bg-gradient opacity-90 transition-all">
+                <div className="h-64 flex items-left justify-center flex-wrap flex-col gap-5 p-3">
+                  <h2 className=" text-slate-50 text-sm font-bold">
+                    {movieData?.title} ({movieData?.releaseYear})
+                  </h2>
+                  <h2 className=" text-slate-50 text-sm font-semibold">
+                    {movieData?.genre?.join(", ")}
+                  </h2>
+                  <h2 className=" text-slate-50 text-sm">
+                    Rating: {movieData?.rating}
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
