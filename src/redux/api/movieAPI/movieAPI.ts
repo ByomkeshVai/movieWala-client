@@ -31,10 +31,23 @@ const movieAPI = baseAPI
       }),
       AddMovie: builder.mutation({
         query: (data) => {
-          console.log(data);
           return {
             url: "/movies/create-movie",
             method: "POST",
+            body: data,
+          };
+        },
+        transformResponse: (response: TApiResponse) => {
+          return response;
+        },
+        invalidatesTags: ["movie"],
+      }),
+      FeaturedChange: builder.mutation({
+        query: ({ id, data }) => {
+          console.log(id, data);
+          return {
+            url: `/movies/change-featured/${id}`,
+            method: "PUT",
             body: data,
           };
         },
@@ -76,6 +89,7 @@ const movieAPI = baseAPI
 export const {
   useGetmovieQuery,
   useSingleMovieQuery,
+  useFeaturedChangeMutation,
   useAddMovieMutation,
   useDeleteMovieMutation,
   useUpdateMovieMutation,

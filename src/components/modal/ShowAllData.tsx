@@ -65,7 +65,7 @@ const ShowAllData = ({
             </span>
           </h2>
           <h2>
-            Trailer Link :{" "}
+            Trailer Link :
             <span>
               <a href={data?.trailerLink}>{data?.trailerLink}</a>
             </span>

@@ -30,6 +30,8 @@ export interface TMovie {
   cast?: string[];
   movieLink?: string[];
   trailerLink?: string;
+  posterImage?: string;
+  featured: boolean;
 }
 
 export interface TApiRequest {

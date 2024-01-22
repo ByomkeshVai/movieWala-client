@@ -1,12 +1,15 @@
-import { Table } from "antd";
+import { Switch, Table } from "antd";
 import Swal from "sweetalert2";
 import {
   useDeleteMovieMutation,
+  useFeaturedChangeMutation,
   useGetmovieQuery,
 } from "../../../../redux/api/movieAPI/movieAPI";
 import Button from "../../../../libs/Button";
 import ShowSingleMovie from "./ShowSingleMovie";
 import { useState } from "react";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import toast from "react-hot-toast";
 
 const MovieTable = () => {
   const { data, isLoading } = useGetmovieQuery(undefined);
@@ -40,20 +43,38 @@ const MovieTable = () => {
     });
   };
 
+  const [updateFeatured, { isSuccess }] = useFeaturedChangeMutation();
+
+  const onFeaturedChange = (itemId: string, checked: boolean) => {
+    updateFeatured({ id: itemId, data: { currentFeaturedValue: checked } });
+    if (isSuccess) {
+      toast.success("Featured Updated!");
+    }
+  };
+
   const dataSource = data?.map((item, index) => ({
     key: (index + 1).toString(),
-    title: item.title,
-    releaseYear: item.releaseYear,
-    category: item.category,
-    language: item.language,
-    genre: item.genre,
+    title: item?.title,
+    releaseYear: item?.releaseYear,
+    category: item?.category,
+    language: item?.language?.join(", "),
+    genre: item?.genre?.join(", "),
+
     action: (
-      <div className="flex gap-2  items-center">
+      <div className="flex gap-4  items-center">
+        <Switch
+          checkedChildren={<CheckOutlined />}
+          unCheckedChildren={<CloseOutlined />}
+          defaultChecked={item?.featured}
+          className="bg-purple-600"
+          onChange={(checked) => onFeaturedChange(item._id, checked)}
+        />
         <Button
           action={"View"}
           color={"blue"}
           onClick={() => handleViewClick(item._id)}
         />
+
         {/* <Button
           action={"Edit"}
           color={"blue"}

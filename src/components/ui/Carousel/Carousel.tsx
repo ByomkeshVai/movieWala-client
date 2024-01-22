@@ -6,8 +6,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { useGetmovieQuery } from "../../../redux/api/movieAPI/movieAPI";
 
 const Carousel = () => {
+  const { data } = useGetmovieQuery(undefined);
   return (
     <div className="lg:w-[35rem] w-96">
       <Swiper
@@ -31,55 +33,12 @@ const Carousel = () => {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className=""
       >
-        <SwiperSlide>
-          <img
-            className="object-cover"
-            src="https://i.ebayimg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-10">
-          <img
-            className="object-cover"
-            src="https://i.etsystatic.com/20512669/r/il/fd4820/1967828617/il_570xN.1967828617_kv3i.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-10">
-          <img
-            className="object-cover"
-            src="https://www.vintagemovieposters.co.uk/wp-content/uploads/2023/03/IMG_1887-scaled.jpeg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-10">
-          <img
-            className="object-cover"
-            src="https://i.pinimg.com/736x/1c/c8/95/1cc895d854e596771bbdeca9f261fd4a.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-10">
-          <img
-            className="object-cover"
-            src="https://i.ebayimg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-10">
-          <img
-            className="object-cover"
-            src="https://i.etsystatic.com/20512669/r/il/fd4820/1967828617/il_570xN.1967828617_kv3i.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide className="h-10">
-          <img
-            className="object-cover"
-            src="https://i.ebayi8 h-56mg.com/images/g/ujkAAOSwYEhjyt9a/s-l1200.webp"
-            alt=""
-          />
-        </SwiperSlide>
+        {data?.map((movieData) => (
+          <SwiperSlide key={movieData._id}>
+            <img className="object-cover" src={movieData?.posterImage} alt="" />
+          </SwiperSlide>
+        ))}
+
         {/* <div className="slider-controler">
           <div className="swiper-button-prev slider-arrow">
             <ion-icon name="arrow-back-outline"></ion-icon>
