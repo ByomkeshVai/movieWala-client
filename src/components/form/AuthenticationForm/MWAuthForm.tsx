@@ -25,7 +25,12 @@ const MWAuthForm = ({ onSubmit, children, defaultValues }: TFormProps) => {
   const method = useForm(formConfig);
   return (
     <FormProvider {...method}>
-      <form onSubmit={method.handleSubmit(onSubmit)}>{children}</form>
+      <form
+        onSubmit={method.handleSubmit(onSubmit)}
+        className="flex justify-center flex-col"
+      >
+        {children}
+      </form>
     </FormProvider>
   );
 };

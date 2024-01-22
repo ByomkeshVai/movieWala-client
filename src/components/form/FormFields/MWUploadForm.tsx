@@ -55,7 +55,7 @@ const MWUploadForm = ({ imageUrl, setImageUrl, isSuccess }: MWUploadProps) => {
         <Upload
           name="avatar"
           listType="picture-card"
-          className="avatar-uploader"
+          className="avatar-uploader text-center mb-5"
           showUploadList={false}
           //   action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
           beforeUpload={beforeUpload}
