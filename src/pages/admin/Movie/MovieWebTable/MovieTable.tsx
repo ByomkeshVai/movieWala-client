@@ -5,6 +5,8 @@ import {
   useGetmovieQuery,
 } from "../../../../redux/api/movieAPI/movieAPI";
 import Button from "../../../../libs/Button";
+import ShowSingleMovie from "./ShowSingleMovie";
+import { useState } from "react";
 
 const MovieTable = () => {
   const { data, isLoading } = useGetmovieQuery(undefined);
@@ -12,16 +14,10 @@ const MovieTable = () => {
 
   //   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  //   const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
-
   //   const handleEditClick = (itemId: string) => {
   //     setSelectedMovieId(itemId);
   //     setIsModalOpen(true);
   //   };
-
-  const handleViewClick = (itemId: string) => {
-    console.log(itemId);
-  };
 
   const handleDeleteClick = (itemId: string) => {
     Swal.fire({
@@ -109,6 +105,20 @@ const MovieTable = () => {
       key: "action",
     },
   ];
+
+  //   const handleEditClick = (itemId: string) => {
+  //     setSelectedLanguageId(itemId);
+  //     setIsModalOpen(true);
+  //   };
+
+  const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
+
+  const handleViewClick = (itemId: string) => {
+    setIsShowAllModalOpen(true);
+    setSelectedMovieId(itemId);
+  };
+
+  const [isShowAllModalOpen, setIsShowAllModalOpen] = useState(false);
   return (
     <div>
       <div className="w-full mx-auto ">
@@ -116,6 +126,13 @@ const MovieTable = () => {
           "Loading"
         ) : (
           <Table dataSource={dataSource} columns={columns} />
+        )}
+        {selectedMovieId && (
+          <ShowSingleMovie
+            selectedMovieId={selectedMovieId}
+            isShowAllModalOpen={isShowAllModalOpen}
+            setIsShowAllModalOpen={setIsShowAllModalOpen}
+          />
         )}
         {/* <LanguageUpdateModal
           isModalOpen={isModalOpen}

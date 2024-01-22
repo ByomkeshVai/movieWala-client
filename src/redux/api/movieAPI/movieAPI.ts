@@ -25,7 +25,7 @@ const movieAPI = baseAPI
           };
         },
         transformResponse: (response: TApiResponse) => {
-          return response;
+          return response.data;
         },
         providesTags: ["movie"],
       }),
@@ -75,6 +75,7 @@ const movieAPI = baseAPI
 
 export const {
   useGetmovieQuery,
+  useSingleMovieQuery,
   useAddMovieMutation,
   useDeleteMovieMutation,
   useUpdateMovieMutation,

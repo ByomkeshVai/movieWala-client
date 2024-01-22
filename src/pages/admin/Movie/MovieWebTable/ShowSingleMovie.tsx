@@ -1,7 +1,25 @@
-const ShowSingleMovie = () => {
+import ShowAllData from "../../../../components/modal/ShowAllData";
+
+type TShowAllData = {
+  isShowAllModalOpen: boolean;
+  selectedMovieId: string;
+  setIsShowAllModalOpen: (value: boolean) => void;
+};
+
+const ShowSingleMovie = ({
+  selectedMovieId,
+  isShowAllModalOpen,
+  setIsShowAllModalOpen,
+}: TShowAllData) => {
   return (
     <div>
-      <h1>This is ShowSingleMovie component</h1>
+      {selectedMovieId && (
+        <ShowAllData
+          selectedMovieId={selectedMovieId}
+          isShowAllModalOpen={isShowAllModalOpen}
+          setIsShowAllModalOpen={setIsShowAllModalOpen}
+        />
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import UpdateLanguageForm from "../../../components/form/LanguageForm/UpdateLanguageForm";
 import { useGetLanguageQuery } from "../../../redux/api/languageAPI/languageAPI";
 
@@ -16,10 +16,6 @@ const LanguageUpdateModal: React.FC<ModalProps> = ({
 }) => {
   const { data: data } = useGetLanguageQuery(selectedLanguageId);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -28,9 +24,6 @@ const LanguageUpdateModal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
       <Modal
         footer={null}
         title="Update Language Name"

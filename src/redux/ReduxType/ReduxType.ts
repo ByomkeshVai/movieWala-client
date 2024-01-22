@@ -2,7 +2,7 @@ export interface TApiResponse {
   statusCode: number;
   success: boolean;
   message: string;
-  data: TCategory[];
+  data: TCategory[] | TMovie[];
 }
 
 interface TCategory {
