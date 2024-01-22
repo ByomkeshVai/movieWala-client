@@ -7,7 +7,7 @@ const { Header, Sider, Content } = Layout;
 
 const BackendLayout = () => {
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout className="h-[100vh]">
       <Sider
         breakpoint="lg"
         collapsedWidth="0"

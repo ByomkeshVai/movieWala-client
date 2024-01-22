@@ -15,6 +15,7 @@ import { useAddMovieMutation } from "../../../redux/api/movieAPI/movieAPI";
 import MWUploadForm from "../FormFields/MWUploadForm";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import MWInputNumber from "../FormFields/MWInputNumber";
 
 const AddSeriesForm = () => {
   const { reset, control } = useForm();
@@ -66,6 +67,20 @@ const AddSeriesForm = () => {
           name="description"
           placeholder="Add description"
         />
+        <MWInput
+          label="Release Year"
+          type="text"
+          name="releaseYear"
+          placeholder="Add Release Year"
+        />
+        <MWInputNumber
+          label="Rating"
+          type="number"
+          name="rating"
+          placeholder="Add Rating(1-9)"
+          minValue={1}
+          maxValue={9}
+        />
         <MWSelect
           mappedData={categoryData}
           name="category"
@@ -101,6 +116,11 @@ const AddSeriesForm = () => {
           name="language"
           mode="multiple"
           placeholder="Select Languages"
+        />
+        <MWSelect
+          name="stars"
+          mode="tags"
+          placeholder="Press enter to add Stars Name"
         />
         <MWSelect
           name="tags"

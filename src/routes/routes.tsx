@@ -3,6 +3,8 @@ import App from "../App";
 import { adminRoutes } from "./AdminRoutes";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
+import BackendLayout from "../components/layout/Backend/BackendLayout";
+import ProtectedRoute from "../components/layout/ProtectedRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +21,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <App />,
+    element: (
+      <ProtectedRoute>
+        <BackendLayout />
+      </ProtectedRoute>
+    ),
     children: adminRoutes,
   },
 ]);

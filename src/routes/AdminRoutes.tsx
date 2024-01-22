@@ -6,6 +6,7 @@ import Genre from "../pages/admin/Genre/Genre";
 import Language from "../pages/admin/Language/Language";
 import AddMovie from "../pages/admin/Movie/AddMovie";
 import AddWebSeries from "../pages/admin/Movie/AddWebSeries";
+import MovieTable from "../pages/admin/Movie/MovieWebTable/MovieTable";
 
 type TRoute = {
   path: string;
@@ -33,6 +34,11 @@ const adminPaths = [
     name: "Add Series",
     path: "add-Series",
     element: <AddWebSeries />,
+  },
+  {
+    name: "All Uploaded",
+    path: "all-uploaded",
+    element: <MovieTable />,
   },
 
   {

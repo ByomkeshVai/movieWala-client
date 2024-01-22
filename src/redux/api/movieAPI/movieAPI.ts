@@ -6,19 +6,26 @@ const movieAPI = baseAPI
   .injectEndpoints({
     endpoints: (builder) => ({
       Getmovie: builder.query({
-        query: (movieID = "") => {
-          return movieID
-            ? {
-                url: `/movies/${movieID}`,
-                method: "GET",
-              }
-            : {
-                url: "/movies",
-                method: "GET",
-              };
+        query: () => {
+          return {
+            url: "/movies",
+            method: "GET",
+          };
         },
         transformResponse: (response: TApiRequest) => {
-          return response?.data?.movies;
+          return response.data.result;
+        },
+        providesTags: ["movie"],
+      }),
+      SingleMovie: builder.query({
+        query: (id) => {
+          return {
+            url: `/movies/${id}`,
+            method: "GET",
+          };
+        },
+        transformResponse: (response: TApiResponse) => {
+          return response;
         },
         providesTags: ["movie"],
       }),

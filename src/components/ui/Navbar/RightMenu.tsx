@@ -29,10 +29,10 @@ const RightMenu = ({ mode }: TMode) => {
         {user?.role ? (
           <>
             <Menu.Item>
-              <CodeOutlined /> Projects
+              <CodeOutlined /> Request Movie
             </Menu.Item>
             <Menu.Item>
-              <UserOutlined /> Profile
+              <UserOutlined /> {user.username}
             </Menu.Item>
             <Menu.Item onClick={handleLogout}>
               <LogoutOutlined /> Logout
