@@ -35,7 +35,11 @@ const Carousel = () => {
       >
         {data?.map((movieData) => (
           <SwiperSlide key={movieData._id}>
-            <img className="object-cover" src={movieData?.posterImage} alt="" />
+            <img
+              className="object-cover"
+              src={movieData?.posterImage}
+              alt={movieData.title}
+            />
           </SwiperSlide>
         ))}
 

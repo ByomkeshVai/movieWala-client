@@ -6,10 +6,15 @@ const movieAPI = baseAPI
   .injectEndpoints({
     endpoints: (builder) => ({
       Getmovie: builder.query({
-        query: () => {
+        query: (params) => {
+          // const params = new URLSearchParams();
+          // if (property) {
+          //   params.append(property, value);
+          // }
           return {
             url: "/movies",
             method: "GET",
+            params: params,
           };
         },
         transformResponse: (response: TApiRequest) => {
