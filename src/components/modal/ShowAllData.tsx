@@ -51,7 +51,7 @@ const ShowAllData = ({
             Genre : <span>{data?.genre.join(", ")}</span>
           </h2>
           <h2>
-            Stars : <span>{data?.stars}</span>
+            Stars : <span>{data?.stars.join(", ")}</span>
           </h2>
           <h2>
             Tags: <span>{data?.tags?.join(", ")}</span>
@@ -59,7 +59,9 @@ const ShowAllData = ({
           <h2>
             Movie Link :
             <span>
-              <a href={data?.movieLink}>{data?.movieLink}</a>
+              <a href={data?.movieLink.join(", ")}>
+                {data?.movieLink.join(", ")}
+              </a>
             </span>
           </h2>
           <h2>
