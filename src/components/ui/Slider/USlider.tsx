@@ -33,13 +33,13 @@ const USlider = ({ WSize, data }: TWize) => {
             <div className=" group relative">
               <div className="">
                 <img
-                  className="object-cover h-64 "
+                  className="object-fill h-72 w-48"
                   src={movieData?.posterImage}
                   alt={movieData?.title}
                 />
               </div>
-              <div className="hidden group-hover:block h-full absolute top-0 bg-black w-full bg-gradient opacity-90 transition-all">
-                <div className="h-64 flex items-left justify-center flex-wrap flex-col gap-5 p-3">
+              <div className="hidden  group-hover:block h-full absolute top-0 bg-black w-48 bg-gradient opacity-90 transition-all">
+                <div className="h-72 flex items-left justify-center flex-wrap flex-col gap-5 p-3">
                   <h2 className=" text-slate-50 text-sm font-bold">
                     {movieData?.title} ({movieData?.releaseYear})
                   </h2>

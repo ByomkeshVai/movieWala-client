@@ -6,7 +6,7 @@ type TBannerProps = {
 
 const Banner = ({ imgLink }: TBannerProps) => {
   return (
-    <div className="banner-area py-10 bg-banner-pattern bg-blend-multiply  mt-10">
+    <div className="banner-area py-10 bg-banner-pattern bg-blend-multiply mt-10">
       <div className="flex flex-col lg:flex-row items-center gap-10 justify-between px-10  relative z-20 max-w-screen-2xl mx-auto ">
         <div className="text-area mt-10">
           <h2 className="font-bold lg:text-3xl text-slate-100">
