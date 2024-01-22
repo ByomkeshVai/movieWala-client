@@ -9,7 +9,7 @@ import { imageUpload } from "../../../utils/utils";
 type MWUploadProps = {
   setImageUrl: (url: string) => void;
   imageUrl: string;
-  isSuccess: boolean;
+  isSuccess?: boolean;
 };
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];

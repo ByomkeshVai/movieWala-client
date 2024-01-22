@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import HeroImage from "/public/Hero/HeroImage.jpg";
+import HeroImage from "/Hero/HeroImage.jpg";
 
 const HeroBackground = () => {
   return (

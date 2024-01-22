@@ -1,11 +1,13 @@
-import FrontendLayout from "./components/layout/Frontend/FrontendLayout";
 import "./App.css";
+
+import Register from "./pages/Authentication/Register";
 
 function App() {
   return (
     <>
       {/* <BackendLayout /> */}
-      <FrontendLayout />
+      {/* <FrontendLayout /> */}
+      <Register />
     </>
   );
 }
