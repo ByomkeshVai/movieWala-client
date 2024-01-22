@@ -1,7 +1,11 @@
 import Marquee from "react-fast-marquee";
 import HeroImage from "/Hero/HeroImage.jpg";
 
-const HeroBackground = () => {
+type HeroBackgroundProps = {
+  height: string;
+};
+
+const HeroBackground = ({ height }: HeroBackgroundProps) => {
   return (
     <Marquee
       direction="right"
@@ -9,7 +13,7 @@ const HeroBackground = () => {
       speed={15}
       play={true}
       loop={99999999}
-      className="h-96"
+      className={height}
     >
       <img className="opacity-90 " src={HeroImage} alt="" />
     </Marquee>

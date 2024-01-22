@@ -7,7 +7,7 @@ const HeroArea = () => {
     <>
       <div className="hero-container h-96 ">
         <div className=" z-0 absolute ">
-          <HeroBackground />
+          <HeroBackground height="h-96" />
         </div>
         <div className="flex lg:items-center lg:justify-between justify-center flex-wrap px-10 lg:py-0  relative z-20 max-w-screen-2xl mx-auto">
           <div className="text-area lg:mt-10 mt-8 text-center lg:text-left">
