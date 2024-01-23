@@ -1,6 +1,6 @@
-import AllAnime from "../components/ui/FrotendPage/AllContent/AllAnime";
-import AllMovie from "../components/ui/FrotendPage/AllContent/AllMovie";
-import AllSeires from "../components/ui/FrotendPage/AllContent/AllSeires";
+import AllAnime from "../pages/AllContent/AllAnime";
+import AllMovie from "../pages/AllContent/AllMovie";
+import AllSeires from "../pages/AllContent/AllSeires";
 
 export const userPaths = [
   {
