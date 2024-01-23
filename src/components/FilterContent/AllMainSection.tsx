@@ -11,15 +11,14 @@ type TItem = {
 
 type AllMainSectionProps = {
   values: string;
+  handleSingleMovie: (category: string, itemId: string) => void;
 };
 
-const AllMainSection = ({ values }: AllMainSectionProps) => {
+const AllMainSection = ({ values, handleSingleMovie }: AllMainSectionProps) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string | null>(
     null
   );
-
-  console.log(values);
 
   const handleGenreSelect = (item: TItem) => {
     setSelectedFilter("genre");
@@ -61,8 +60,6 @@ const AllMainSection = ({ values }: AllMainSectionProps) => {
     ...(selectedFilter === "quality" && { quality: selectedFilterValue }),
     ...(selectedFilter === "stars" && { stars: selectedFilterValue }),
   });
-
-  console.log(data);
 
   return (
     <div className="flex justify-between max-w-screen-2xl mx-auto">
@@ -144,6 +141,7 @@ const AllMainSection = ({ values }: AllMainSectionProps) => {
             className="bg-[#0E0D12] "
             hoverable={true}
             key={movieData._id}
+            onClick={() => handleSingleMovie(movieData.category, movieData._id)}
           >
             <div className=" group relative">
               <div className="">

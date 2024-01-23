@@ -24,6 +24,7 @@ const movieAPI = baseAPI
       }),
       SingleMovie: builder.query({
         query: (id) => {
+          console.log(id);
           return {
             url: `/movies/${id}`,
             method: "GET",

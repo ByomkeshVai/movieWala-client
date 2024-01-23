@@ -9,11 +9,16 @@ import { routeGenerator } from "../utils/routerGenerator";
 
 import { userPaths } from "./UserRoutes";
 import FrontendOutlet from "../components/layout/Frontend/FrontendOutlet";
+import SingleContentMain from "../pages/SingleContent/SingleContentMain";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <FrontendOutlet />,
+  },
+  {
+    path: "/singleContent/:category/:itemId",
+    element: <SingleContentMain />,
   },
   {
     path: "/",
