@@ -9,11 +9,17 @@ type TItem = {
   label: string;
 };
 
-const AllMainSection = () => {
+type AllMainSectionProps = {
+  values: string;
+};
+
+const AllMainSection = ({ values }: AllMainSectionProps) => {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [selectedFilterValue, setSelectedFilterValue] = useState<string | null>(
     null
   );
+
+  console.log(values);
 
   const handleGenreSelect = (item: TItem) => {
     setSelectedFilter("genre");
@@ -25,17 +31,44 @@ const AllMainSection = () => {
     setSelectedFilterValue(item.label);
   };
 
+  const handleReleaseSelect = (item: TItem) => {
+    setSelectedFilter("releaseYear");
+    setSelectedFilterValue(item.label);
+  };
+
+  const handleQualitySelect = (item: TItem) => {
+    setSelectedFilter("quality");
+    setSelectedFilterValue(item.label);
+  };
+
+  const handleStarsSelect = (item: TItem) => {
+    setSelectedFilter("stars");
+    setSelectedFilterValue(item.label);
+  };
+
+  const handleResetFilters = () => {
+    setSelectedFilter(null);
+    setSelectedFilterValue(null);
+  };
+
   const { data } = useGetmovieQuery({
-    category: "Movie",
+    category: `${values}`,
     ...(selectedFilter === "genre" && { genre: selectedFilterValue }),
     ...(selectedFilter === "language" && { language: selectedFilterValue }),
+    ...(selectedFilter === "releaseYear" && {
+      releaseYear: selectedFilterValue,
+    }),
+    ...(selectedFilter === "quality" && { quality: selectedFilterValue }),
+    ...(selectedFilter === "stars" && { stars: selectedFilterValue }),
   });
+
+  console.log(data);
 
   return (
     <div className="flex justify-between max-w-screen-2xl mx-auto">
-      <div className="basis-1/4 text-slate-50">
-        <div>
-          <div>
+      <div className="basis-1/4 text-slate-50 flex flex-col gap-5">
+        <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
+          <div className="">
             <h2>Filter By Genre</h2>
           </div>
           <FilterContent
@@ -43,9 +76,10 @@ const AllMainSection = () => {
             categoryKey="genre"
             filterName="genre"
             onFilterSelect={handleGenreSelect}
+            selectedFilterValue={selectedFilterValue}
           />
         </div>
-        <div>
+        <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
           <div>
             <h2>Filter By language</h2>
           </div>
@@ -54,12 +88,53 @@ const AllMainSection = () => {
             categoryKey="language"
             filterName="language"
             onFilterSelect={handleLanguageSelect}
+            selectedFilterValue={selectedFilterValue}
           />
         </div>
-        <div>
+        <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
           <div>
-            <h2>Filter By category</h2>
+            <h2>Filter By Release Date</h2>
           </div>
+          <FilterContent
+            data={data}
+            categoryKey="releaseYear"
+            filterName="releaseYear"
+            onFilterSelect={handleReleaseSelect}
+            selectedFilterValue={selectedFilterValue}
+          />
+        </div>
+        <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
+          <div>
+            <h2>Filter By Quality Date</h2>
+          </div>
+          <FilterContent
+            data={data}
+            categoryKey="quality"
+            filterName="quality"
+            onFilterSelect={handleQualitySelect}
+            selectedFilterValue={selectedFilterValue}
+          />
+        </div>
+
+        <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
+          <div>
+            <h2>Filter By Stars Date</h2>
+          </div>
+          <FilterContent
+            data={data}
+            categoryKey="stars"
+            filterName="stars"
+            onFilterSelect={handleStarsSelect}
+            selectedFilterValue={selectedFilterValue}
+          />
+        </div>
+        <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
+          <button
+            onClick={handleResetFilters}
+            className="px-4 py-2 rounded-xl shadow-md bg-red-500"
+          >
+            Reset Filters
+          </button>
         </div>
       </div>
       <div className="flex flex-wrap gap-5 py-5 basis-3/4">

@@ -1,4 +1,4 @@
-import FeatureSidebar from "../../components/ui/FrotendPage/Featured/FeatureSidebar";
+import FeatureSidebar from "../ui/FrotendPage/Featured/FeatureSidebar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";

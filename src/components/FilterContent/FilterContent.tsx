@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
-import { Button, Dropdown, Menu } from "antd";
+import { useState, useEffect } from "react";
+import { Dropdown, Menu } from "antd";
 
 type TItem = {
   key: string;
@@ -12,6 +12,7 @@ type DropdownFilterProps = {
   categoryKey: string;
   filterName: string;
   onFilterSelect: (item: TItem) => void;
+  selectedFilterValue: string | null;
 };
 
 const FilterContent = ({
@@ -19,6 +20,7 @@ const FilterContent = ({
   categoryKey,
   filterName,
   onFilterSelect,
+  selectedFilterValue,
 }: DropdownFilterProps) => {
   const [items, setItems] = useState<TItem[]>([]);
 
@@ -43,6 +45,7 @@ const FilterContent = ({
 
   return (
     <Dropdown
+      className="py-2 rounded-lg"
       overlay={
         <Menu>
           {items.map((item) => (
@@ -55,7 +58,9 @@ const FilterContent = ({
       placement="bottomLeft"
       arrow={{ pointAtCenter: true }}
     >
-      <Button>{`Filter by ${filterName}`}</Button>
+      <button className="bg-slate-100 text-gray-950">{`Filter by ${
+        selectedFilterValue || filterName
+      }`}</button>
     </Dropdown>
   );
 };
