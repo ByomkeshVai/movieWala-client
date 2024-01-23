@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-import { useGetmovieQuery } from "../../../redux/api/movieAPI/movieAPI";
+import { useGetmovieQuery } from "../../../../redux/api/movieAPI/movieAPI";
 
 const Carousel = () => {
   const { data } = useGetmovieQuery(undefined);

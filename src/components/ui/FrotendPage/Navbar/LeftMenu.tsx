@@ -1,12 +1,10 @@
 import { Menu } from "antd";
 import { TMode } from "./NavTypes";
+import { navbarItemsGenerator } from "../../../../utils/navbarGenerator";
+import { userPaths } from "../../../../routes/UserRoutes";
 
 const LeftMenu = ({ mode }: TMode) => {
-  const items = [
-    { label: "Movies", key: "Movies" },
-    { label: "Series", key: "Series" },
-    { label: "Anime", key: "Anime" },
-  ];
+  const items = navbarItemsGenerator(userPaths);
   return <Menu mode={mode} items={items} className="font-bold" />;
 };
 

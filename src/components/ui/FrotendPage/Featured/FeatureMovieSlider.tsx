@@ -5,16 +5,12 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
-import { TMovie } from "../../../redux/ReduxType/ReduxType";
+import { useGetmovieQuery } from "../../../../redux/api/movieAPI/movieAPI";
 
-type TWize = {
-  WSize: string;
-  data: TMovie[];
-};
-
-const USlider = ({ WSize, data }: TWize) => {
+const FeatureMovieSlider = () => {
+  const { data } = useGetmovieQuery({ featured: "true" });
   return (
-    <div className={`${WSize}`}>
+    <div className="w-[65rem]">
       <Swiper
         grabCursor={true}
         centeredSlides={false}
@@ -28,18 +24,18 @@ const USlider = ({ WSize, data }: TWize) => {
         modules={[Pagination, Navigation]}
         className=""
       >
-        {data?.map((movieData: TMovie) => (
+        {data?.map((movieData) => (
           <SwiperSlide className="">
             <div className=" group relative">
               <div className="">
                 <img
-                  className="object-fill h-72 w-48"
+                  className="object-cover h-64 "
                   src={movieData?.posterImage}
                   alt={movieData?.title}
                 />
               </div>
-              <div className="hidden  group-hover:block h-full absolute top-0 bg-black w-48 bg-gradient opacity-90 transition-all">
-                <div className="h-72 flex items-left justify-center flex-wrap flex-col gap-5 p-3">
+              <div className="hidden group-hover:block h-full absolute top-0 bg-black w-full bg-gradient opacity-90 transition-all">
+                <div className="h-64 flex items-left justify-center flex-wrap flex-col gap-5 p-3">
                   <h2 className=" text-slate-50 text-sm font-bold">
                     {movieData?.title} ({movieData?.releaseYear})
                   </h2>
@@ -59,4 +55,4 @@ const USlider = ({ WSize, data }: TWize) => {
   );
 };
 
-export default USlider;
+export default FeatureMovieSlider;

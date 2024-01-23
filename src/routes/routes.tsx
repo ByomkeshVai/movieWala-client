@@ -1,15 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { adminRoutes } from "./AdminRoutes";
+import { adminPaths } from "./AdminRoutes";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import BackendLayout from "../components/layout/Backend/BackendLayout";
 import ProtectedRoute from "../components/layout/ProtectedRoutes";
+import { routeGenerator } from "../utils/routerGenerator";
+
+import { userPaths } from "./UserRoutes";
+import FrontendOutlet from "../components/layout/Frontend/FrontendOutlet";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <FrontendOutlet />,
+  },
+  {
+    path: "/",
     element: <App />,
+    children: routeGenerator(userPaths),
   },
   {
     path: "/login",
@@ -26,6 +35,6 @@ export const router = createBrowserRouter([
         <BackendLayout />
       </ProtectedRoute>
     ),
-    children: adminRoutes,
+    children: routeGenerator(adminPaths),
   },
 ]);

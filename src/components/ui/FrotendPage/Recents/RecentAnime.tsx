@@ -1,4 +1,4 @@
-import { useGetmovieQuery } from "../../../redux/api/movieAPI/movieAPI";
+import { useGetmovieQuery } from "../../../../redux/api/movieAPI/movieAPI";
 import USlider from "../Slider/USlider";
 import RecentHeaders from "./RecentHeaders";
 

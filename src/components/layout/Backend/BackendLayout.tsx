@@ -1,11 +1,35 @@
 import { Layout, Menu } from "antd";
 import { Footer } from "antd/es/layout/layout";
 import { Outlet } from "react-router-dom";
-import { adminSidebarItems } from "../../../routes/AdminRoutes";
+import { adminPaths } from "../../../routes/AdminRoutes";
+import { sidebarItemsGenerator } from "../../../utils/sidebarGenerator";
+import { useAppSelector } from "../../../redux/hook";
+import { getCurrentUser } from "../../../redux/features/auth/AuthSlice";
 
 const { Header, Sider, Content } = Layout;
 
+const userRole = {
+  ADMIN: "admin",
+  MODERATOR: "moderator",
+  USER: "user",
+};
+
 const BackendLayout = () => {
+  const user = useAppSelector(getCurrentUser);
+
+  let sidebarItems;
+
+  switch (user!.role) {
+    case userRole.ADMIN:
+      sidebarItems = sidebarItemsGenerator(adminPaths, userRole.ADMIN);
+      break;
+    case userRole.MODERATOR:
+      sidebarItems = sidebarItemsGenerator(adminPaths, userRole.MODERATOR);
+      break;
+    default:
+      break;
+  }
+
   return (
     <Layout className="h-[100vh]">
       <Sider
@@ -34,7 +58,7 @@ const BackendLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={adminSidebarItems}
+          items={sidebarItems}
         />
       </Sider>
       <Layout>

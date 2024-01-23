@@ -1,8 +1,11 @@
 import { Menu, Avatar } from "antd";
 import { UserOutlined, CodeOutlined, LogoutOutlined } from "@ant-design/icons";
 import { TMode } from "./NavTypes";
-import { useAppDispatch, useAppSelector } from "../../../redux/hook";
-import { getCurrentUser, logout } from "../../../redux/features/auth/AuthSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hook";
+import {
+  getCurrentUser,
+  logout,
+} from "../../../../redux/features/auth/AuthSlice";
 import { useNavigate } from "react-router-dom";
 
 const RightMenu = ({ mode }: TMode) => {

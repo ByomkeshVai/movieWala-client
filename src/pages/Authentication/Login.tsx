@@ -1,6 +1,6 @@
 import DefaultLogo from "/public/deafultlogo.png";
-import HeroBackground from "../../components/ui/Hero/HeroBackground";
-import LoginPage from "../../components/ui/AuthUI/LoginPage";
+import HeroBackground from "../../components/ui/FrotendPage/Hero/HeroBackground";
+import LoginPage from "../../components/ui/FrotendPage/AuthUI/LoginPage";
 
 const Login = () => {
   return (

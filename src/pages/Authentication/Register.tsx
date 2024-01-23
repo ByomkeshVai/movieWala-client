@@ -1,6 +1,6 @@
 import DefaultLogo from "/public/deafultlogo.png";
-import HeroBackground from "../../components/ui/Hero/HeroBackground";
-import RegisterPage from "../../components/ui/AuthUI/RegisterPage";
+import HeroBackground from "../../components/ui/FrotendPage/Hero/HeroBackground";
+import RegisterPage from "../../components/ui/FrotendPage/AuthUI/RegisterPage";
 
 const Register = () => {
   return (

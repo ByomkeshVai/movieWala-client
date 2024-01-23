@@ -1,9 +1,9 @@
 import { FieldValues } from "react-hook-form";
-import MWAuthInput from "../../form/AuthenticationForm/MWAuthInput";
-import MWUploadForm from "../../form/FormFields/MWUploadForm";
+import MWAuthInput from "../../../form/AuthenticationForm/MWAuthInput";
+import MWUploadForm from "../../../form/FormFields/MWUploadForm";
 import { useState } from "react";
-import MWAuthForm from "../../form/AuthenticationForm/MWAuthForm";
-import { useRegisterMutation } from "../../../redux/features/auth/authApi";
+import MWAuthForm from "../../../form/AuthenticationForm/MWAuthForm";
+import { useRegisterMutation } from "../../../../redux/features/auth/authApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 

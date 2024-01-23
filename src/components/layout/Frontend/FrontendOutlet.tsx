@@ -1,19 +1,19 @@
-import Navbar from "../../ui/FrotendPage/Navbar";
-
-import Footer from "../../ui/FrotendPage/Footer/Footer";
-import { Outlet } from "react-router-dom";
-import HeroArea from "../../ui/FrotendPage/Hero/HeroArea";
 import FeaturedMovie from "../../ui/FrotendPage/Featured/FeaturedMovie";
+import Footer from "../../ui/FrotendPage/Footer/Footer";
+import HeroArea from "../../ui/FrotendPage/Hero/HeroArea";
+import Navbar from "../../ui/FrotendPage/Navbar";
 import RecentComponent from "../../ui/FrotendPage/Recents/RecentComponent";
 
-const FrontendLayout = () => {
+const FrontendOutlet = () => {
   return (
     <div className="flex flex-col justify-center bg-[#18191A]">
       <Navbar />
-      <Outlet />
+      <HeroArea />
+      <FeaturedMovie />
+      <RecentComponent />
       <Footer />
     </div>
   );
 };
 
-export default FrontendLayout;
+export default FrontendOutlet;

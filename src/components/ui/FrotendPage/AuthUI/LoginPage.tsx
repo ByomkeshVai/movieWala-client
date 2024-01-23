@@ -1,12 +1,12 @@
 import { FieldValues } from "react-hook-form";
-import MWAuthInput from "../../form/AuthenticationForm/MWAuthInput";
-import MWAuthForm from "../../form/AuthenticationForm/MWAuthForm";
-import { useLoginMutation } from "../../../redux/features/auth/authApi";
-import { useAppDispatch } from "../../../redux/hook";
+import MWAuthInput from "../../../form/AuthenticationForm/MWAuthInput";
+import MWAuthForm from "../../../form/AuthenticationForm/MWAuthForm";
+import { useLoginMutation } from "../../../../redux/features/auth/authApi";
+import { useAppDispatch } from "../../../../redux/hook";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { TUser, setUser } from "../../../redux/features/auth/AuthSlice";
-import { verifyToken } from "../../../utils/VerifyToken";
+import { TUser, setUser } from "../../../../redux/features/auth/AuthSlice";
+import { verifyToken } from "../../../../utils/VerifyToken";
 
 const LoginPage = () => {
   const navigate = useNavigate();
