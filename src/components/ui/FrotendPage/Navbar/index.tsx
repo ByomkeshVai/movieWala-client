@@ -4,6 +4,7 @@ import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { MenuOutlined } from "@ant-design/icons";
 import SearchBar from "./SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
@@ -11,12 +12,14 @@ const Navbar = () => {
     setVisible(!visible);
   };
 
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar mt-1">
       <Layout className="max-w-screen-2xl mx-auto">
         <Layout.Header className="nav-header flex items-center">
-          <div className="logo">
-            <h3 className="brand-font font-bold text-xl">MovieWala</h3>
+          <div className="logo cursor-pointer" onClick={() => navigate("/")}>
+            <h3 className="brand-font font-bold text-xl ">MovieWala</h3>
           </div>
           <div className="navbar-menu">
             <div className="leftMenu ">

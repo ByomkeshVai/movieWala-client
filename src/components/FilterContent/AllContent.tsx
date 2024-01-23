@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { TMovie } from "../../redux/ReduxType/ReduxType";
+import { useNavigate } from "react-router-dom";
 
 type AllContentProps = {
   name: string;
@@ -13,6 +14,7 @@ type AllContentProps = {
 };
 
 const AllContent = ({ name, data }: AllContentProps) => {
+  const navigate = useNavigate();
   return (
     <div className="lg:flex lg:justify-between p-10 max-w-screen-2xl mx-auto items-center">
       <FeatureSidebar name={name} />
@@ -31,7 +33,14 @@ const AllContent = ({ name, data }: AllContentProps) => {
           className=""
         >
           {data?.map((movieData: TMovie) => (
-            <SwiperSlide className="">
+            <SwiperSlide
+              className="cursor-pointer"
+              onClick={() =>
+                navigate(
+                  `/singleContent/${movieData?.category}/${movieData?._id}`
+                )
+              }
+            >
               <div className=" group relative">
                 <div className="">
                   <img

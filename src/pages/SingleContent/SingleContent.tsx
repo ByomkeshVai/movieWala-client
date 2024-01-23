@@ -1,7 +1,8 @@
-import { TMovie } from "../../redux/ReduxType/ReduxType";
+import LocalVideoPlayer from "./LocalVideoPlayer";
 
 type SingleContentProps = {
-  data: TMovie;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
 };
 const SingleContent = ({ data }: SingleContentProps) => {
   return (
@@ -45,8 +46,8 @@ const SingleContent = ({ data }: SingleContentProps) => {
           </div>
         </div>
       </div>
-      <div className="max-w-screen-2xl mx-auto">
-        <h2>hello</h2>
+      <div className="max-w-screen-2xl mx-auto block">
+        <LocalVideoPlayer videoLink={data?.movieLink} />
       </div>
     </div>
   );

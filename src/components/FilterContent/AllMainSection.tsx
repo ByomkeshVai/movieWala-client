@@ -62,8 +62,8 @@ const AllMainSection = ({ values, handleSingleMovie }: AllMainSectionProps) => {
   });
 
   return (
-    <div className="flex justify-between max-w-screen-2xl mx-auto">
-      <div className="basis-1/4 text-slate-50 flex flex-col gap-5">
+    <div className="lg:flex lg:justify-between items-center max-w-screen-2xl mx-auto">
+      <div className="lg:basis-1/4 text-slate-50 flex lg:flex-col flex-wrap gap-5">
         <div className="text-slate-50 font-semibold flex flex-col gap-3 w-48">
           <div className="">
             <h2>Filter By Genre</h2>

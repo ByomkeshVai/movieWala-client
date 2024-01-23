@@ -1,6 +1,6 @@
 import { Layout, Menu } from "antd";
 import { Footer } from "antd/es/layout/layout";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { adminPaths } from "../../../routes/AdminRoutes";
 import { sidebarItemsGenerator } from "../../../utils/sidebarGenerator";
 import { useAppSelector } from "../../../redux/hook";
@@ -17,6 +17,8 @@ const userRole = {
 const BackendLayout = () => {
   const user = useAppSelector(getCurrentUser);
 
+  const navigate = useNavigate();
+
   let sidebarItems;
 
   switch (user!.role) {
@@ -27,6 +29,7 @@ const BackendLayout = () => {
       sidebarItems = sidebarItemsGenerator(adminPaths, userRole.MODERATOR);
       break;
     default:
+      navigate("/");
       break;
   }
 

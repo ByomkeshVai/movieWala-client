@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 type RecentHeadersProps = {
   name: string;
   color: string;
 };
 const RecentHeaders = ({ name, color }: RecentHeadersProps) => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-between items-center py-5">
       <div>
@@ -15,6 +18,7 @@ const RecentHeaders = ({ name, color }: RecentHeadersProps) => {
       <div>
         <button
           className={`border-2 border-slate-50 rounded-xl shadow-lg px-4 py-2 hover:bg-${color}-700 transition-colors`}
+          onClick={() => navigate(`/all-${name.toLowerCase()}`)}
         >
           <span className="font-semibold">All {name}</span>
         </button>

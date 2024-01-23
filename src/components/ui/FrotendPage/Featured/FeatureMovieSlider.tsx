@@ -6,9 +6,11 @@ import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
 import { useGetmovieQuery } from "../../../../redux/api/movieAPI/movieAPI";
+import { useNavigate } from "react-router-dom";
 
 const FeatureMovieSlider = () => {
   const { data } = useGetmovieQuery({ featured: "true" });
+  const navigate = useNavigate();
   return (
     <div className="w-[65rem]">
       <Swiper
@@ -25,7 +27,14 @@ const FeatureMovieSlider = () => {
         className=""
       >
         {data?.map((movieData) => (
-          <SwiperSlide className="">
+          <SwiperSlide
+            className="cursor-pointer"
+            onClick={() =>
+              navigate(
+                `/singleContent/${movieData?.category}/${movieData?._id}`
+              )
+            }
+          >
             <div className=" group relative">
               <div className="">
                 <img

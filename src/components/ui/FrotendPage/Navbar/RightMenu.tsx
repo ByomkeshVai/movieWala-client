@@ -41,6 +41,18 @@ const RightMenu = ({ mode }: TMode) => {
               <LogoutOutlined /> Logout
             </Menu.Item>
           </>
+        ) : user?.role == "admin" ? (
+          <>
+            <Menu.Item onClick={() => navigate("/admin/dashboard")}>
+              <CodeOutlined /> Dashboard
+            </Menu.Item>
+            <Menu.Item>
+              <UserOutlined /> {user.username}
+            </Menu.Item>
+            <Menu.Item onClick={handleLogout}>
+              <LogoutOutlined /> Logout
+            </Menu.Item>
+          </>
         ) : (
           <>
             <Menu.Item onClick={() => navigate("/login")}>

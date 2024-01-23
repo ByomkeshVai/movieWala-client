@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 
 import { Pagination, Navigation } from "swiper/modules";
 import { TMovie } from "../../../../redux/ReduxType/ReduxType";
+import { useNavigate } from "react-router-dom";
 
 type TWize = {
   WSize: string;
@@ -13,8 +14,9 @@ type TWize = {
 };
 
 const USlider = ({ WSize, data }: TWize) => {
+  const navigate = useNavigate();
   return (
-    <div className={`${WSize}`}>
+    <div className={`lg:${WSize} w-[65rem]`}>
       <Swiper
         grabCursor={true}
         centeredSlides={false}
@@ -29,11 +31,18 @@ const USlider = ({ WSize, data }: TWize) => {
         className=""
       >
         {data?.map((movieData: TMovie) => (
-          <SwiperSlide className="">
+          <SwiperSlide
+            className="cursor-pointer"
+            onClick={() =>
+              navigate(
+                `/singleContent/${movieData?.category}/${movieData?._id}`
+              )
+            }
+          >
             <div className=" group relative">
               <div className="">
                 <img
-                  className="object-fill h-72 w-48"
+                  className="lg:object-fill lg:h-72 lg:w-48 object-cover h-64"
                   src={movieData?.posterImage}
                   alt={movieData?.title}
                 />

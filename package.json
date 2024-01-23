@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@graphland/react-video-player": "^0.1.14",
     "@reduxjs/toolkit": "^2.0.1",
     "antd": "^5.13.1",
     "jwt-decode": "^4.0.0",
@@ -18,6 +19,7 @@
     "react-fast-marquee": "^1.6.3",
     "react-hook-form": "^7.49.3",
     "react-hot-toast": "^2.4.1",
+    "react-player": "^2.14.1",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.21.2",
     "redux-persist": "^6.0.0",
