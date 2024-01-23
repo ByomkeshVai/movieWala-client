@@ -11,12 +11,15 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [ProfileImage, setProfileImage] = useState("");
   const [registerUser, { isSuccess }] = useRegisterMutation();
+
+  console.log(ProfileImage);
   const onSubmit = async (data: FieldValues) => {
     try {
       const modifiedData = {
         ...data,
         profileImageUrl: ProfileImage,
       };
+
       registerUser(modifiedData);
       toast.success("Registration Successful");
       navigate(`/`);
@@ -24,6 +27,7 @@ const RegisterPage = () => {
       toast.error("Something Went Wrong");
     }
   };
+
   return (
     <div className="lg:flex-1">
       <MWAuthForm onSubmit={onSubmit}>

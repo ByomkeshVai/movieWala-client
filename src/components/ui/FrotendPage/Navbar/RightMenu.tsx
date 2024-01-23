@@ -7,11 +7,18 @@ import {
   logout,
 } from "../../../../redux/features/auth/AuthSlice";
 import { useNavigate } from "react-router-dom";
+// import { useSingleUserQuery } from "../../../../redux/features/auth/authApi";
 
 const RightMenu = ({ mode }: TMode) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(getCurrentUser);
+
+  // console.log(user?.username);
+
+  // const { data } = useSingleUserQuery(user?.username);
+
+  // console.log(data);
 
   const handleLogout = () => {
     dispatch(logout());
