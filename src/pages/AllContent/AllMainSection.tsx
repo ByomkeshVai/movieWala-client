@@ -1,6 +1,8 @@
-import { Button, Card, Dropdown, Menu } from "antd";
-import { TMovie } from "../../redux/ReduxType/ReduxType";
+import { Card } from "antd";
 import { useGetmovieQuery } from "../../redux/api/movieAPI/movieAPI";
+import FilterContent from "./FilterContent";
+import { TMovie } from "../../redux/ReduxType/ReduxType";
+import { useState } from "react";
 
 type TItem = {
   key: string;
@@ -8,47 +10,56 @@ type TItem = {
 };
 
 const AllMainSection = () => {
-  const { data } = useGetmovieQuery({ category: "Movie" });
+  const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const [selectedFilterValue, setSelectedFilterValue] = useState<string | null>(
+    null
+  );
 
-  const transformDataToItems = (data: TMovie[] | undefined): TItem[] => {
-    const itemsSet = new Set<string>();
-
-    const items =
-      data
-        ?.flatMap((item) => item.genre ?? [])
-        .filter((genre) => genre && !itemsSet.has(genre) && itemsSet.add(genre))
-        .map((genre) => ({ key: genre, label: genre })) ?? [];
-
-    return items;
+  const handleGenreSelect = (item: TItem) => {
+    setSelectedFilter("genre");
+    setSelectedFilterValue(item.label);
   };
 
-  const items: TItem[] = transformDataToItems(data);
-
-  const handleMenuClick = (item: TItem) => {
-    console.log(item.key, item.label);
-    // Do something with the key and label values
+  const handleLanguageSelect = (item: TItem) => {
+    setSelectedFilter("language");
+    setSelectedFilterValue(item.label);
   };
+
+  const { data } = useGetmovieQuery({
+    category: "Movie",
+    ...(selectedFilter === "genre" && { genre: selectedFilterValue }),
+    ...(selectedFilter === "language" && { language: selectedFilterValue }),
+  });
 
   return (
     <div className="flex justify-between max-w-screen-2xl mx-auto">
       <div className="basis-1/4 text-slate-50">
-        <Dropdown
-          overlay={
-            <Menu onClick={handleMenuClick}>
-              {items.map((item) => (
-                <Menu.Item key={item.key} onClick={() => handleMenuClick(item)}>
-                  {item.label}
-                </Menu.Item>
-              ))}
-            </Menu>
-          }
-          placement="bottomLeft"
-          arrow={{ pointAtCenter: true }}
-        >
-          <Button>bottomLeft</Button>
-        </Dropdown>
         <div>
-          <h2>Filter By Category</h2>
+          <div>
+            <h2>Filter By Genre</h2>
+          </div>
+          <FilterContent
+            data={data}
+            categoryKey="genre"
+            filterName="genre"
+            onFilterSelect={handleGenreSelect}
+          />
+        </div>
+        <div>
+          <div>
+            <h2>Filter By language</h2>
+          </div>
+          <FilterContent
+            data={data}
+            categoryKey="language"
+            filterName="language"
+            onFilterSelect={handleLanguageSelect}
+          />
+        </div>
+        <div>
+          <div>
+            <h2>Filter By category</h2>
+          </div>
         </div>
       </div>
       <div className="flex flex-wrap gap-5 py-5 basis-3/4">
